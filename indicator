@@ -1,12 +1,8 @@
-// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
-// SPDX-License-Identifier: MPL-2.0
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 // Copyright (c) PriceFirst
-// Round Numbers
-// Version: 1.0.0
-// Source: https://github.com/appmux/tradingview-round-numbers
-// TradingView: https://www.tradingview.com/script/j6YNGSzg-Round-Numbers/
-// X: https://x.com/pricefirst
-// Description: Highlights round, half, and quarter number levels with adaptive spacing across Forex, crypto, indices, commodities, and stocks. Reach out via X for support.
+// Round Numbers v1.0.0
+
 //@version=6
 indicator("Round Numbers", "", true, max_lines_count = 500)
 

@@ -3,7 +3,7 @@
 Adaptive round-number levels for TradingView.
 
 - Source: <https://github.com/appmux/tradingview-round-numbers>
-- TradingView: <https://www.tradingview.com/script/j6YNGSzg-Round-Numbers/>
+- TradingView: <https://www.tradingview.com/script/zlY3RolI-Round-Numbers/>
 
 This indicator highlights round, half, and quarter levels around the current price and adjusts spacing automatically across different instrument types, including Forex, crypto, indices, commodities, and stocks.
 

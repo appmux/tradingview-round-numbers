@@ -1,0 +1,29 @@
+Round Numbers highlights the key psychological price levels around the current market by drawing round, half, and quarter number levels around price.
+
+The goal is simple: make round numbers easier to see, improve chart readability, and help you stay visually oriented without cluttering the chart with unrelated logic.
+
+[b]How it works[/b]
+[list]
+[*]Automatically adapts level spacing across different markets using daily range and decimal-place anchoring.
+[*]Works with Forex, cryptocurrencies, indices, commodities, and stocks.
+[*]Optional symbol-specific override multipliers are available for instruments that require custom spacing.
+[/list]
+[b]Displays[/b]
+[list]
+[*]Round levels
+[*]Half levels
+[*]Quarter levels
+[/list]
+[b]Use cases[/b]
+[list]
+[*]Visualize where price is trading relative to nearby psychological levels.
+[*]Improve chart structure and orientation.
+[*]Keep important price levels visible across different markets.
+[/list]
+[b]Settings[/b]
+[list]
+[*]Visible Levels - Number of levels displayed around the current price.
+[*]Round / Half / Quarter - Individual visibility and style settings.
+[*]Overrides - Optional symbol-specific spacing multipliers.
+[/list]
+This indicator is designed as a visual reference layer. It does not generate trade signals and does not attempt to identify support or resistance using order flow, liquidity, or reversal logic.

@@ -1,7 +1,7 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 // Copyright (c) PriceFirst
-// Round Numbers v1.0.0
+// Round Numbers v1.0.1
 
 //@version=6
 indicator("Round Numbers", "", true, max_lines_count = 500)
@@ -67,22 +67,20 @@ getOverrideMultiplier() =>
 
     multiplier
 
-getDailyRangeAverage() =>
-    request.security(syminfo.tickerid, "D", ta.sma(high - low, 14))
+dailyRangeAnchor = request.security(syminfo.tickerid, "D", math.max(ta.sma(high - low, 14), ta.highest(high - low, 20) * 0.5))
 
-getAutoTargetStep(baseStep) =>
-    adr = nz(getDailyRangeAverage())
-    targetStep = adr
-    math.max(baseStep, targetStep)
+getAutoTargetStep(baseMajorStep) =>
+    targetStep = nz(dailyRangeAnchor)
+    math.max(baseMajorStep, targetStep)
 
-getAnchoredMajorStep(targetStep, baseStep) =>
+getAnchoredMajorStep(targetStep, baseMajorStep) =>
     exponent = math.floor(math.log10(targetStep))
     float[] candidates = array.from(math.pow(10.0, exponent - 1), math.pow(10.0, exponent), math.pow(10.0, exponent + 1))
-    bestStep = math.max(baseStep, array.get(candidates, 0))
+    bestStep = math.max(baseMajorStep, array.get(candidates, 0))
     bestDistance = math.abs(bestStep - targetStep)
 
     for i = 1 to array.size(candidates) - 1
-        candidate = math.max(baseStep, array.get(candidates, i))
+        candidate = math.max(baseMajorStep, array.get(candidates, i))
         distance = math.abs(candidate - targetStep)
 
         if distance < bestDistance
@@ -91,30 +89,30 @@ getAnchoredMajorStep(targetStep, baseStep) =>
 
     bestStep
 
-getAutoMajorStep(baseStep) =>
+getAutoMajorStep(baseMajorStep) =>
     overrideMultiplier = getOverrideMultiplier()
 
     if not na(overrideMultiplier)
-        baseStep * overrideMultiplier
+        baseMajorStep * overrideMultiplier
     else
-        targetStep = getAutoTargetStep(baseStep)
-        getAnchoredMajorStep(targetStep, baseStep)
+        targetStep = getAutoTargetStep(baseMajorStep)
+        getAnchoredMajorStep(targetStep, baseMajorStep)
 
 var float baseStep = syminfo.mintick
 var line[] roundNumberLines = array.new<line>()
 
-if barstate.isconfirmed
+if barstate.islast
     baseMajorStep = baseStep * 100
     majorStep = getAutoMajorStep(baseMajorStep)
     quarterStep = majorStep * 0.25
     startIndex = int(math.round(close / quarterStep)) - roundNumbersVisibleLevels
     endIndex = startIndex + roundNumbersVisibleLevels * 2
 
-    if roundNumberLines.size() > 0
-        for i = 0 to roundNumberLines.size() - 1
-            roundNumberLines.pop().delete()
+    while roundNumberLines.size() > 0
+        roundNumberLines.pop().delete()
 
     index = startIndex
+    x1 = na(bar_index[1]) ? bar_index : bar_index[1]
 
     while index <= endIndex
         quarterLevel = math.abs(index % 4)
@@ -137,6 +135,6 @@ if barstate.isconfirmed
             lineStyle := getLineStyle(roundNumbersQuarterStyle)
 
         if show
-            roundNumberLines.push(line.new(bar_index[1], levelPrice, bar_index, levelPrice, color=lineColor, width=width, extend=extend.both, style=lineStyle))
+            roundNumberLines.push(line.new(x1, levelPrice, bar_index, levelPrice, color=lineColor, width=width, extend=extend.both, style=lineStyle))
 
         index := index + 1

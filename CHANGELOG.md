@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.1
+
+- Stabilized automatic spacing by using a hybrid daily range anchor
+- Reduced spacing shifts during quiet market conditions
+- Updated drawing logic to run on the last bar only
+- Simplified line redraw lifecycle by clearing and redrawing the current level set
+- Added a first-bar fallback for line coordinates
+- Clarified internal auto-step naming
+- Updated public description wording to match the stabilized range logic
+
 ## 1.0.0
 
 Initial standalone open-source release of `Round Numbers`.
@@ -8,8 +18,8 @@ Initial standalone open-source release of `Round Numbers`.
 
 - Reduced the script to the round-number functionality only
 - Reworked automatic spacing so it behaves sensibly across Forex, crypto, indices, commodities, and stocks
-- Replaced earlier instrument-specific heuristics with a more generic daily-range-based approach
-- Switched the generic fallback to daily-range anchoring with decimal-place snapping
+- Replaced earlier instrument-specific heuristics with a more generic stabilized daily range approach
+- Switched the generic fallback to stabilized daily range anchoring with decimal-place snapping
 - Added optional symbol override rows with configurable multipliers
 - Simplified settings by removing the old top-level visibility toggle
 - Removed the old `Auto/Manual` scale mode and manual global multiplier

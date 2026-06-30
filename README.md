@@ -11,7 +11,7 @@ This indicator highlights round, half, and quarter levels around the current pri
 
 - Draws round-number levels around the current price
 - Draws optional half and quarter levels between majors
-- Adapts spacing automatically using daily range and decimal-place anchoring
+- Adapts spacing automatically using a stabilized daily range anchor and decimal-place anchoring
 - Supports symbol-based override multipliers for instruments that need custom spacing
 
 ## Why It Exists

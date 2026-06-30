@@ -4,7 +4,7 @@ The goal is simple: make round numbers easier to see, improve chart readability,
 
 [b]How it works[/b]
 [list]
-[*]Automatically adapts level spacing across different markets using daily range and decimal-place anchoring.
+[*]Automatically adapts level spacing across different markets using a stabilized daily range anchor and decimal-place anchoring.
 [*]Works with Forex, cryptocurrencies, indices, commodities, and stocks.
 [*]Optional symbol-specific override multipliers are available for instruments that require custom spacing.
 [/list]
